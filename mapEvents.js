@@ -44,9 +44,10 @@ function loadedSchools(list){
 //Map function includes: 'click', position (latitude, longitude), and displays
 //schools nearby the location
 function myApp(map){
-    var noOfMiles = 1;
-    var noOfMetres = noOfMiles * 1609.34;
+    var noOfMiles = 1; //Set variable to 1
+    var noOfMetres = noOfMiles * 1609.34; //1 Mile = 1609.34 Meres
     map.addListener('click', function(p) {
+        //DELETES LAST CIRCLE ON SECOND CLICK
         if (window.lastCircle != null){
             window.lastCircle.setMap(null);
         }
