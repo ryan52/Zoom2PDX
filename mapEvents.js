@@ -4,9 +4,11 @@
 //
 function addedPoint(name, district, rating) {
     console.log(name+district+rating);
-    $("#data").append('<div class="data-point">'+name+"   "+district
-        +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
-																	+'</div></div>');
+    $("#data").append('<div class="data-point">'+name
+										 +((district!="") ? ' ('+district+')' : '') 
+										 +'<div id="'+name.replace(/\s+/g,"")+'" class="data-bar school-bar" style="width:0;" >'
+										 +'</div></div>');
+		$(".data-point #"+name.replace(/\s+/g,"")).animate({width:rating*100}, 1000, "swing");
 }
 
 function loadedSchools(list){
