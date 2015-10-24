@@ -1,10 +1,9 @@
 function initMap() {
-	//make it a local later
-	window.map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: 45.5200, lng: -122.6819},
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: -34.397, lng: 150.644},
 						 zoom: 13
 						});
-	var infoWindow = new google.maps.InfoWindow({map: window.map});
+	var infoWindow = new google.maps.InfoWindow({map: map});
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
@@ -15,15 +14,13 @@ function initMap() {
 
 			infoWindow.setPosition(pos);
 			infoWindow.setContent('Location found.');
-			window.map.setCenter(pos);
-			}, function() {handleLocationError(true, infoWindow, window.map.getCenter()); });
+			map.setCenter(pos);
+			}, function() {handleLocationError(true, infoWindow, map.getCenter()); });
 		}
 		else {
 		// Browser doesn't support Geolocation
-			handleLocationError(false, infoWindow, window.map.getCenter());
-
+			handleLocationError(false, infoWindow, map.getCenter());
 		}
-	myApp();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -94,5 +91,4 @@ function get_schools_by_location(latitude, longitude, distance){
 		dataType: "json",
 	});
 }
-
 
