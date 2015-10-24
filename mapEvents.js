@@ -1,6 +1,9 @@
 /**
  * Created by Rohan on 10/23/2015.
  */
+function loadedSchools(list){
+    return list;
+}
 
 function myApp(){
     var noOfMiles = 3;
@@ -25,6 +28,10 @@ function myApp(){
             center: myPos,
             radius: noOfMetres
         });
+        get_schools_by_location(myPos.lat,myPos.lng,noOfMiles).done(
+            function(data){
+                loadedSchools(data.results);
+            });
     });
 
 }

@@ -84,7 +84,7 @@ function get_school_data(school_id){
 function get_schools_by_location(latitude, longitude, distance){
 	return $.ajax({
 		url: "http://api.civicapps.org/schools/near/"
-				 +latitude+","+longitude+"&distance="+distance,
+				 +longitude+","+latitude+"?distance="+distance,
 		dataType: "json",
 	});
 }
