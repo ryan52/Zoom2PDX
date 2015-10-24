@@ -1,15 +1,39 @@
 /**
  * Created by Rohan on 10/23/2015.
  */
+
+function addedPoint(name, district, rating) {
+    // FIXME: append a data-point to data-container
+    alert(name + " (" + district + "): " + rating);
+}
+
 function loadedSchools(list){
+    //$('data-container').empty();
+    var totalCount = 0, totalRating = 0;
+    var expectedCount = list.length;
+    var loadedAllSchools = function(average) {
+	AddPoint('Average', '', average);
+    }
+    var loadedSchool = function(school) {
+	totalCount = totalCount + 1;
+	var rating = calculate_score(school);
+	totalRating = totalRating + rating;
+	AddPoint(school.SchoolName, school.DistrictName, rating);
+	if(totalCount != expectedCount) {
+	    loadedAllSchools(totalRating / totalCount);
+	}
+    }
+    for(var i = 0; i < list.count; i++) {
+	get_school_data(list[i].SchoolID).done(loadedSchool);
+    }
     return list;
 }
 
-function myApp(){
+
+function myApp(map){
     var noOfMiles = 3;
     var noOfMetres = noOfMiles * 1609.34;
-    console.log(window.map);
-    window.map.addListener('click', function(p) {
+    map.addListener('click', function(p) {
         if (window.lastCircle != null){
             window.lastCircle.setMap(null);
         }

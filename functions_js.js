@@ -21,6 +21,7 @@ function initMap() {
 		// Browser doesn't support Geolocation
 			handleLocationError(false, infoWindow, map.getCenter());
 		}
+	myApp(map);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
