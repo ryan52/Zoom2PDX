@@ -1,9 +1,10 @@
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -34.397, lng: 150.644},
+	//make it a local later
+	window.map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: 45.5200, lng: 122.6819},
 						 zoom: 6
 						});
-	var infoWindow = new google.maps.InfoWindow({map: map});
+	var infoWindow = new google.maps.InfoWindow({map: window.map});
 
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
@@ -14,13 +15,15 @@ function initMap() {
 
 			infoWindow.setPosition(pos);
 			infoWindow.setContent('Location found.');
-			map.setCenter(pos);
-			}, function() {handleLocationError(true, infoWindow, map.getCenter()); });
+			window.map.setCenter(pos);
+			}, function() {handleLocationError(true, infoWindow, window.map.getCenter()); });
 		}
 		else {
 		// Browser doesn't support Geolocation
-			handleLocationError(false, infoWindow, map.getCenter());
+			handleLocationError(false, infoWindow, window.map.getCenter());
+
 		}
+	myApp();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
