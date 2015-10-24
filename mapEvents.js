@@ -4,11 +4,11 @@
 //
 function addedPoint(name, district, rating) {
     console.log(name+district+rating);
-    $("#data").append('<div class="data-point">'+name
-										 +((district!="") ? ' ('+district+')' : '') 
+    $("#data").append('<div class="data-point"><b>'+name+'</b>'
+										 +((district!="") ? ' ('+district+')' : '')+'</div>'
 										 +'<div id="'+name.replace(/\s+/g,"")+'" class="data-bar school-bar" style="width:0;" >'
-										 +'</div></div>');
-		$(".data-point #"+name.replace(/\s+/g,"")).animate({width:rating*100}, 1000, "swing");
+										 +'</div><br>');
+		$("#data #"+name.replace(/\s+/g,"")).animate({width:rating*40}, 1000, "swing");
 }
 
 function loadedSchools(list){
@@ -18,7 +18,7 @@ function loadedSchools(list){
     var totalCount = 0, totalRating = 0;
     var expectedCount = list.length;
     var loadedAllSchools = function(average) {
-	addedPoint('Average', '', average);
+	addedPoint('Average School Score', '', average);
     }
     var loadedSchool = function(data) {
         var school = data.results;
