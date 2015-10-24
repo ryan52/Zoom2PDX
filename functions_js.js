@@ -32,21 +32,23 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		'Error: The Geolocation service failed.' :
 		'Error: Your browser doesn\'t support geolocation.');
 }
-
+//Calculates score of school 
 function calculate_score(school) {
 
     var total = 0;
-
+//Drop out students of current year from last years
+//If LESS drop outs CURRENT year from the previous, +1 SCORE!
     var res = school.SchoolInformation.Dropouts.DropoutStudentsPctCurrYear - school.SchoolInformation.Dropouts.DropoutStudentsPrevYearPct;
     if (res < 0) {
         ++total;
     }
-
+//If MORE ATTENDANCE in CURRENT year from the PREVIOUS, +1 SCORE!
     res = school.SchoolInformation.Attendance.AttendancePctCurrYear - school.SchoolInformation.Attendance.AttendancePctPrevYear;
     if (res > 0) {
         ++total;
     }
-
+//If STUDENTS/TEACHER ratio is less than 15/1, +2 SCORE!
+//If STUDENTS/TEACHER ratio is less than 25/1, +1 SCORE!
     res = school.SchoolInformation.StudentPopulation.NumberOfStudents / school.SchoolInformation.Staffing.Teachers;
     if (res < 15) {
         total += 2;
@@ -72,7 +74,7 @@ function calculate_score(school) {
 
     return total;
 }
-
+//Gets schools name
 function get_school_data(school_id){
 	var schoolid = "/"+school_id || "";
 	return $.ajax({
@@ -80,7 +82,7 @@ function get_school_data(school_id){
 		dataType: "json",
 	});
 }
-
+//Gets schools by location within a radius and returns schools near
 function get_schools_by_location(latitude, longitude, distance){
 	return $.ajax({
 		url: "http://api.civicapps.org/schools/near/"

@@ -1,7 +1,7 @@
 function calculate_score(school) {
 
     var total = 0;
-
+//Current year - Previous year dropout students
     var res = school.SchoolInformation.Dropouts.DropoutStudentsPctCurrYear - school.SchoolInformation.Dropouts.DropoutStudentsPrevYearPct;
     if (res < 0) {
         ++total;
