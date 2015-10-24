@@ -29,3 +29,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		'Error: The Geolocation service failed.' :
 		'Error: Your browser doesn\'t support geolocation.');
 }
+
+function get_school_data(school_id){
+	var schoolid = "/"+school_id || "";
+	return $.ajax({
+		url: "http://api.civicapps.org/schools"+schoolid,
+		dataType: "json",
+	});
+}
+
+function get_schools_by_location(latitude, longitude){
+	return $.ajax({
+		url: "http://api.civicapps.org/schools/near/"
+				 +latitude+","+longitude+"&distance=5",
+		dataType: "json",
+	});
+}
+
+
