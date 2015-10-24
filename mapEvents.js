@@ -40,7 +40,7 @@ function loadedSchools(list){
 
 
 function myApp(map){
-    var noOfMiles = 3;
+    var noOfMiles = 1;
     var noOfMetres = noOfMiles * 1609.34;
     map.addListener('click', function(p) {
         if (window.lastCircle != null){
