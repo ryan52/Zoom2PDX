@@ -21,7 +21,7 @@ function sort_list(item1,item2){
 
 //Loaded schools will show total ratings
 function loadedSchools(list){
-    //$('#data').empty();
+    $('#data').empty();
     //list.push({SchoolID: 0});
     //console.log(list);
     var listForSchools=[];
@@ -37,7 +37,7 @@ function loadedSchools(list){
         list = list.sort(sort_list);
 
         list.forEach(function(item){
-            addedPoint(item.SchoolName,item.DistrictName,item.rating);
+            addedPoint(item.SchoolName,'',item.rating);
         });
 	    addedPoint('Average School Score', '', average);
     }
