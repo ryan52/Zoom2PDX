@@ -38,10 +38,10 @@ function get_school_data(school_id){
 	});
 }
 
-function get_schools_by_location(latitude, longitude){
+function get_schools_by_location(latitude, longitude, distance){
 	return $.ajax({
 		url: "http://api.civicapps.org/schools/near/"
-				 +latitude+","+longitude+"&distance=5",
+				 +latitude+","+longitude+"&distance="+distance,
 		dataType: "json",
 	});
 }
