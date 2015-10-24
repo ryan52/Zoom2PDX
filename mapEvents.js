@@ -1,9 +1,9 @@
 /**
  * Created by Rohan on 10/23/2015.
  */
-//
+//Function from added point displaying name, district, and rating.
 function addedPoint(name, district, rating) {
-    console.log(name+district+rating);
+    console.log(name+district+rating); //console.log writes a message to the console
     $("#data").append('"<div class="data-point">'+name+"   "+district
         +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
 																	+'</div></div>');
