@@ -3,8 +3,9 @@
  */
 
 function addedPoint(name, district, rating) {
-    // FIXME: append a data-point to data-container
-    alert(name + " (" + district + "): " + rating);
+    $("#data").append('"<div class="data-point">'+name+"   "+district
+																  +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
+																	+'</div></div>');
 }
 
 function loadedSchools(list){
