@@ -28,7 +28,11 @@ function loadedSchools(list){
 	}
     }
     for(var i = 0; i < list.length; i++) {
-	get_school_data(list[i].SchoolID).done(loadedSchool);
+    if(list[i].SchoolID == "0"){
+        expectedCount--;
+    }
+    else {
+        get_school_data(list[i].SchoolID).done(loadedSchool);}
     }
     return list;
 }

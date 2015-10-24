@@ -80,7 +80,7 @@ function calculate_score(school) {
 function get_school_data(school_id){
 	var schoolid = "/"+school_id || "";
 	return $.ajax({
-		url: "http://api.civicapps.org/schools"+schoolid,
+		url: "http://api.civicapps.org/schools/"+school_id,
 		dataType: "json",
 	});
 }
