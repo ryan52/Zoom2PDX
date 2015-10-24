@@ -4,7 +4,7 @@
 
 function addedPoint(name, district, rating) {
     // FIXME: append a data-point to data-container
-    alert(name + " (" + district + "): " + rating);
+    console.log(name + " (" + district + "): " + rating);
 }
 
 function loadedSchools(list){
@@ -16,7 +16,8 @@ function loadedSchools(list){
     var loadedAllSchools = function(average) {
 	AddPoint('Average', '', average);
     }
-    var loadedSchool = function(school) {
+    var loadedSchool = function(data) {
+        var school = data.results;
 	totalCount = totalCount + 1;
 	var rating = calculate_score(school);
 	totalRating = totalRating + rating;
@@ -25,7 +26,7 @@ function loadedSchools(list){
 	    loadedAllSchools(totalRating / totalCount);
 	}
     }
-    for(var i = 0; i < list.count; i++) {
+    for(var i = 0; i < list.length; i++) {
 	get_school_data(list[i].SchoolID).done(loadedSchool);
     }
     return list;
