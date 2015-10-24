@@ -10,7 +10,7 @@ function addedPoint(name, district, rating) {
 }
 
 function loadedSchools(list){
-    $('data-container').empty();
+    $('#data').empty();
     if(list == null)
 	return;
     var totalCount = 0, totalRating = 0;
