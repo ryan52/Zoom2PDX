@@ -83,6 +83,8 @@ function get_school_data(school_id){
 		url: "http://api.civicapps.org/schools/"+school_id,
 		dataType: "json",
 	});
+
+	//console.log(data);
 }
 //Gets schools by location within a radius and returns schools near
 function get_schools_by_location(latitude, longitude, distance){

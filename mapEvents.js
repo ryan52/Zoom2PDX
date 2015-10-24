@@ -11,32 +11,67 @@ function addedPoint(name, district, rating) {
 		$("#data #"+name.replace(/\s+/g,"")).animate({width:rating*40}, 1000, "swing");
 
 }
+
+function filter_list(item){
+    return item.SchoolID !== 0
+}
+function sort_list(item1,item2){
+    return item1.SchoolName >= item2.SchoolName;
+}
+
 //Loaded schools will show total ratings
 function loadedSchools(list){
-    $('#data').empty();
+    //$('#data').empty();
+    //list.push({SchoolID: 0});
+    //console.log(list);
+    var listForSchools=[];
     if(list == null)
-	return;
+	    return;
+
     var totalCount = 0, totalRating = 0;
     var expectedCount = list.length;
+
     var loadedAllSchools = function(average) {
-	addedPoint('Average School Score', '', average);
+        list = list.filter(filter_list);
+        //console.log("list2", list);
+        list = list.sort(sort_list);
+
+        list.forEach(function(item){
+            addedPoint(item.SchoolName,item.DistrictName,item.rating);
+        });
+	    addedPoint('Average School Score', '', average);
     }
-    var loadedSchool = function(data) {
+
+    var loadedSchool = function(data){
         var school = data.results;
-	totalCount = totalCount + 1;
-	var rating = calculate_score(school);
-	totalRating = totalRating + rating;
-	addedPoint(school.SchoolName, school.DistrictName, rating);
-	if(totalCount == expectedCount) {
-	    loadedAllSchools(totalRating / totalCount);
-	}
+        var rating = calculate_score(school);
+
+        for (var i = 0; i < list.length; i++) {
+            if(list[i].SchoolID == school.SchoolID){
+                list[i].rating = rating;
+            }
+        }
+
+        totalCount = totalCount + 1;
+        totalRating = totalRating + rating;
+
+        // listForSchools.push(obj);
+        //addedPoint(school.SchoolName, school.DistrictName, rating);
+        if(totalCount == expectedCount) {
+            //console.log("in the if");
+            loadedAllSchools(totalRating / totalCount);
+        }
+        //console.log(totalCount,expectedCount);
     }
+
+
     for(var i = 0; i < list.length; i++) {
-    if(list[i].SchoolID == "0"){
+        if(list[i].SchoolID == "0"){
         expectedCount--;
-    }
-    else {
-        get_school_data(list[i].SchoolID).done(loadedSchool);}
+        }
+        else {
+            get_school_data(list[i].SchoolID).done(loadedSchool);
+        }
     }
     return list;
 }
