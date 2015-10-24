@@ -1,16 +1,27 @@
 /**
  * Created by Rohan on 10/23/2015.
  */
-//
+//Function from added point displaying name, district, and rating.
 function addedPoint(name, district, rating) {
+<<<<<<< HEAD
+    console.log(name+district+rating); //console.log writes a message to the console
+    $("#data").append('"<div class="data-point">'+name+"   "+district
+=======
     console.log(name+district+rating);
+<<<<<<< HEAD
     $("#data").append('<div class="data-point"><b>'+name+'</b>'
 										 +((district!="") ? ' ('+district+')' : '')+'</div>'
 										 +'<div id="'+name.replace(/\s+/g,"")+'" class="data-bar school-bar" style="width:0;" >'
 										 +'</div><br>');
 		$("#data #"+name.replace(/\s+/g,"")).animate({width:rating*40}, 1000, "swing");
+=======
+    $("#data").append('<div class="data-point">'+name+"   "+district
+>>>>>>> 64809f8867d616a24dacdf8c4de55d8e7961c6d2
+        +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
+																	+'</div></div>');
+>>>>>>> 1a84e0b93a12eb7c64657764e45e9f31a3025ad5
 }
-
+//Loaded schools will show total ratings
 function loadedSchools(list){
     $('#data').empty();
     if(list == null)
@@ -40,7 +51,8 @@ function loadedSchools(list){
     return list;
 }
 
-
+//Map function includes: 'click', position (latitude, longitude), and displays
+//schools nearby the location
 function myApp(map){
     var noOfMiles = 1;
     var noOfMetres = noOfMiles * 1609.34;
