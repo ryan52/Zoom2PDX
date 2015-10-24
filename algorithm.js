@@ -1,45 +1,39 @@
-var DropoutStudentsPctCurrYear = 120, DropoutStudentsPrevYearPct = 100;
-var Attendancepctcurrent = 120, Attendancepctprevyear = 100;
-var Numberofstudents = 120, Teachers = 100;
-var Masterdegreeorhigherpct = 120;
-var Avgyearexperience = 120;
-
-(function () {
+function calculate_score(school) {
 
     var total = 0;
 
-    var res = DropoutStudentsPctCurrYear - DropoutStudentsPrevYearPct;
+    var res = school.SchoolInformation.Dropouts.DropoutStudentsPctCurrYear - school.SchoolInformation.Dropouts.DropoutStudentsPrevYearPct;
+    if (res < 0) {
+        ++total;
+    }
+
+    res = school.SchoolInformation.Attendance.AttendancePctCurrYear - school.SchoolInformation.Attendance.AttendancePctPrevYear;
     if (res > 0) {
         ++total;
     }
 
-    res = Attendancepctcurrent - Attendancepctprevyear;
-    if (res > 0) {
-        ++total;
-    }
-
-    res = Numberofstudents / Teachers;
+    res = school.SchoolInformation.StudentPopulation.NumberOfStudents / school.SchoolInformation.Staffing.Teachers;
     if (res < 15) {
         total += 2;
     } else if (res < 25) {
         ++total;
     }
 
-    if (Masterdegreeorhigherpct > 50) {
+    if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 50) {
         total += 3;
-    } else if (Masterdegreeorhigherpct > 35) {
+    } else if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 35) {
         total += 2;
-    } else if (Masterdegreeorhigherpct > 20) {
+    } else if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 20) {
         ++total;
     }
 
-    if (Avgyearexperience > 15) {
+    if (school.SchoolInformation.Staffing.AvgYearsExperience > 15) {
         total += 3;
-    } else if (Avgyearexperience > 10) {
+    } else if (school.SchoolInformation.Staffing.AvgYearsExperience > 10) {
         total += 2;
-    } else if (Avgyearexperience > 5) {
+    } else if (school.SchoolInformation.Staffing.AvgYearsExperience > 5) {
         ++total;
     }
 
-    console.log(total);
-})();
+    return total;
+}
