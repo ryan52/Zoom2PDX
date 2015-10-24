@@ -3,8 +3,9 @@
  */
 
 function addedPoint(name, district, rating) {
+    console.log(name+district+rating);
     $("#data").append('"<div class="data-point">'+name+"   "+district
-																  +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
+        +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
 																	+'</div></div>');
 }
 
@@ -23,7 +24,7 @@ function loadedSchools(list){
 	var rating = calculate_score(school);
 	totalRating = totalRating + rating;
 	addedPoint(school.SchoolName, school.DistrictName, rating);
-	if(totalCount != expectedCount) {
+	if(totalCount == expectedCount) {
 	    loadedAllSchools(totalRating / totalCount);
 	}
     }
