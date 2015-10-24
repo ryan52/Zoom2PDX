@@ -55,7 +55,9 @@ function calculate_score(school) {
     } else if (res < 25) {
         ++total;
     }
-
+//+3 if more than 50% of staff with MASTERSDEGREE OR HIGHER 
+//+2 if more than 35% of staff with MASTERSDEGREE OR HIGHER
+//+1 if more than 20% of staff with MASTERSDEGREE OR HIGHER  
     if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 50) {
         total += 3;
     } else if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 35) {
@@ -63,7 +65,9 @@ function calculate_score(school) {
     } else if (school.SchoolInformation.Staffing.MastersDegreeOrHigherPct > 20) {
         ++total;
     }
-
+//+3 if STAFF has more than 15 YEARS EXPERIENCE OR HIGHER 
+//+2 if STAFF has more than 10 YEARS EXPERIENCE OR HIGHER 
+//+1 if STAFF has more than 5 YEARS EXPERIENCE OR HIGHER  
     if (school.SchoolInformation.Staffing.AvgYearsExperience > 15) {
         total += 3;
     } else if (school.SchoolInformation.Staffing.AvgYearsExperience > 10) {
