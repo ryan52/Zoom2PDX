@@ -13,7 +13,7 @@ function addedPoint(name, district, rating) {
         +'<div class="data-bar school-bar" style="width:'+rating+'px;">'
 																	+'</div></div>');
 }
-
+//Loaded schools will show total ratings
 function loadedSchools(list){
     $('#data').empty();
     if(list == null)
@@ -43,7 +43,8 @@ function loadedSchools(list){
     return list;
 }
 
-
+//Map function includes: 'click', position (latitude, longitude), and displays
+//schools nearby the location
 function myApp(map){
     var noOfMiles = 1;
     var noOfMetres = noOfMiles * 1609.34;
