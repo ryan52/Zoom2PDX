@@ -1,5 +1,10 @@
+#container {
+	height:40%;
+	background-color:rgba(255,255,255,0.85);
+	position:fixed;
+	z-index:2;
+}
+
 #map {
 	height:400px;
 }
-
-
