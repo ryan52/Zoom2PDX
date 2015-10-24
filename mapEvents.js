@@ -1,7 +1,7 @@
 /**
  * Created by Rohan on 10/23/2015.
  */
-
+//
 function addedPoint(name, district, rating) {
     console.log(name+district+rating);
     $("#data").append('"<div class="data-point">'+name+"   "+district
